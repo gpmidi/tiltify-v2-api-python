@@ -6,7 +6,7 @@ from .social import SocialResult
 class TeamResult(Tiltify3Result):
     FIELDS_NORM = [
         'id',
-        'username',
+        'name',
         'slug',
         'url',
     ]
