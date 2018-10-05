@@ -30,8 +30,3 @@ class CampaignResult(Tiltify3Result):
         'team': TeamResult,
         'livestream': LiveStreamResult,
     }
-
-
-class CampaignTiltify(Tiltify3):
-    def get_campaign(self, pk):
-        pass

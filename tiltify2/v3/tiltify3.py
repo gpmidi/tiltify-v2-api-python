@@ -2,22 +2,21 @@ import json
 import requests
 from json import JSONDecodeError
 
+# Various result types
+from .campaigns import CampaignResult
+from .livestream import LiveStreamResult
+from .avatar import AvatarResult
+from .user import UserResult
+from .team import TeamResult
+
 
 class Tiltify3Result(object):
     FIELDS_NORM = []
     FIELDS_SUB = {}
 
-    RESTRICTED_FIELDS = set([
-        'id',
-        'status',
-        'data',
-        'links',
-        'url_self',
-        'url_next',
-        'url_prev',
-    ])
+    RESTRICTED_FIELDS = {'id', 'status', 'data', 'links', 'url_self', 'url_next', 'url_prev'}
 
-    def __init__(self, meta_status, data, links):
+    def __init__(self, meta_status, data, links, error, errors):
         self.status = int(meta_status)
         self.data = data
         self.links = links
@@ -54,6 +53,9 @@ class Tiltify3Result(object):
 
 
 class Tiltify3(object):
+    # Base API URL
+    BASE_URL = 'https://tiltify.com/api/v3/'
+
     def __init__(self, api_key, timeout=2, extra_headers=None):
         self.api_key = api_key
         self._session = None
@@ -74,7 +76,7 @@ class Tiltify3(object):
     def auth_header(self):
         return {'Authorization': 'Bearer {}'.format(self.api_key)}
 
-    def get(self, url, data, **kwargs):
+    def get(self, url, data=None, **kwargs):
         """ Run a GET request """
         resp = self.session().get(
             url,
@@ -89,19 +91,55 @@ class Tiltify3(object):
         except JSONDecodeError as e:
             return resp.text
 
-    def getr(self, result_type, url, data, **kwargs):
+    def getr(self, result_type, url, data=None, **kwargs):
         """ Run a GET request - return the given result type response """
         r = self.get(url=url, data=data, **kwargs)
         res = result_type(
             meta_status=r.get('meta', {}).get('status', None),
-            data=r.get('data', None),
+            data=r.get('data', {}),
             links=r.get('links', {}),
+            error=r.get('error', {}),
+            errors=r.get('errors', {}),
         )
+
+    def getrl(self, result_type, url, data=None, **kwargs):
+        """ Run a GET request - yield the given result type response list """
+        for r in self.get(url=url, data=data, **kwargs):
+            yield result_type(
+                meta_status=r.get('meta', {}).get('status', None),
+                data=r.get('data', {}),
+                links=r.get('links', {}),
+                error=r.get('error', {}),
+                errors=r.get('errors', {}),
+            )
 
     def _default_args(self):
         return dict(api_key=self.api_key, timeout=self.timeout, extra_headers=self.extra_headers)
 
-    @property
-    def campaign(self):
-        from .campaigns import CampaignTiltify
-        return CampaignTiltify(**self._default_args())
+    def f_campaign(self, pk):
+        # https://tiltify.github.io/api/entities/campaign.html
+        return self.getr(CampaignResult, self.BASE_URL + "/campaigns/%d" % pk)
+
+    def f_campaigns(self):
+        # https://tiltify.github.io/api/entities/campaign.html
+        return self.getrl(CampaignResult, self.BASE_URL + "/campaigns")
+
+    def f_team(self, pk):
+        # https://tiltify.github.io/api/entities/team.html
+        return self.getr(TeamResult, self.BASE_URL + "/teams/%d" % pk)
+
+    def f_teams(self):
+        # https://tiltify.github.io/api/entities/team.html
+        return self.getrl(TeamResult, self.BASE_URL + "/teams")
+
+    def f_self(self):
+        # https://tiltify.github.io/api/endpoints/user.html
+        return self.getr(UserResult, self.BASE_URL + "/user")
+
+    def f_user(self, pk):
+        # https://tiltify.github.io/api/entities/user.html
+        return self.getr(UserResult, self.BASE_URL + "/users/%d" % pk)
+
+    def f_users(self):
+        # https://tiltify.github.io/api/entities/user.html
+        return self.getrl(UserResult, self.BASE_URL + "/users")
