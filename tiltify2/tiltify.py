@@ -5,7 +5,7 @@ from enum import Enum
 from tiltify2.exceptions import RequestException, InvalidApiKeyException
 
 
-class Tiltify2:
+class Tiltify2(object):
     api_url = 'https://tiltify.com/api_test/v2/'
     campaign_url = '{}campaign/'.format(api_url)
     donations_url = '{}donations'.format(campaign_url)
