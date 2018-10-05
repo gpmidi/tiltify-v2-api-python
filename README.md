@@ -1,6 +1,6 @@
-# Tiltify v2 API wrapper for Python 3
+# Tiltify v2 & v3 API wrapper for Python 3
 
-A wrapper for the 2nd version of the API provided by https://tiltify.com, an awesome site to combine fundraising and livestreaming.
+A wrapper for the 2nd and 3rd version of the API provided by https://tiltify.com, an awesome site to combine fundraising and livestreaming.
 
 ## Supported Python Versions
 
@@ -15,6 +15,8 @@ A wrapper for the 2nd version of the API provided by https://tiltify.com, an awe
 `pip3 install tiltify2`
 
 ## Usage
+
+### API v2
 
 Import the Tiltify2 object from the library of the version you wish to use.
 
@@ -32,6 +34,9 @@ Retrieve donations, with option parameters `limit`, `order_by` and/or `donation_
 
 
 `five_donations_starting_from_latest_time_created = tiltify.get_donations(limit=2, donation_order=Order.DESC, order_by=Order.CREATED_AT)`
+
+### API v3
+FIXME: Fill in v3 docs
 
 ## Contributions
 
