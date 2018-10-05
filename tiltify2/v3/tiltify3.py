@@ -10,6 +10,10 @@ from .user import UserResult
 from .team import TeamResult
 from .cause import CauseResult
 from .fundraising_event import FundraisingEventResult
+from .donation import DonationResult
+from .reward import RewardResult
+from .poll import PollResult
+
 
 class Tiltify3Result(object):
     FIELDS_NORM = []
@@ -117,6 +121,9 @@ class Tiltify3(object):
     def _default_args(self):
         return dict(api_key=self.api_key, timeout=self.timeout, extra_headers=self.extra_headers)
 
+    # Fetchers of data
+
+    ## Campaign Based
     def f_campaign(self, pk):
         # https://tiltify.github.io/api/entities/campaign.html
         return self.getr(CampaignResult, self.BASE_URL + "/campaigns/%d" % pk)
@@ -125,6 +132,19 @@ class Tiltify3(object):
         # https://tiltify.github.io/api/entities/campaign.html
         return self.getrl(CampaignResult, self.BASE_URL + "/campaigns")
 
+    def f_campaign_donations(self, pk):
+        #
+        return self.getrl(DonationResult, self.BASE_URL + "/campaigns/%d/donations" % pk)
+
+    def f_campaign_rewards(self, pk):
+        #
+        return self.getrl(RewardResult, self.BASE_URL + "/campaigns/%d/rewards" % pk)
+
+    def f_campaign_polls(self, pk):
+        #
+        return self.getrl(PollResult, self.BASE_URL + "/campaigns/%d/polls" % pk)
+
+    ## Team based
     def f_team(self, pk):
         # https://tiltify.github.io/api/entities/team.html
         return self.getr(TeamResult, self.BASE_URL + "/teams/%d" % pk)

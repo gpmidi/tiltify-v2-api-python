@@ -19,3 +19,4 @@ class SettingsResult(Tiltify3Result):
     FIELDS_SUB = {
         'colors': ColorsResult,
     }
+
