@@ -2,4 +2,6 @@
 setup.cfg
 setup.py
 tiltify2\exceptions.py
+tiltify2\tiltify3.py
+tiltify2\__init__.py
 tiltify2\tiltify.py
