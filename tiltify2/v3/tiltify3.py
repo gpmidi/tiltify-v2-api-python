@@ -8,7 +8,8 @@ from .livestream import LiveStreamResult
 from .avatar import AvatarResult
 from .user import UserResult
 from .team import TeamResult
-
+from .cause import CauseResult
+from .fundraising_event import FundraisingEventResult
 
 class Tiltify3Result(object):
     FIELDS_NORM = []
@@ -143,3 +144,19 @@ class Tiltify3(object):
     def f_users(self):
         # https://tiltify.github.io/api/entities/user.html
         return self.getrl(UserResult, self.BASE_URL + "/users")
+
+    def f_cause(self, pk):
+        # https://tiltify.github.io/api/entities/cause.html
+        return self.getr(CauseResult, self.BASE_URL + "/causes/%d" % pk)
+
+    def f_causes(self):
+        # https://tiltify.github.io/api/entities/cause.html
+        return self.getrl(CauseResult, self.BASE_URL + "/causes")
+
+    def f_fund_event(self, pk):
+        # https://tiltify.github.io/api/entities/fundraising-event.html
+        return self.getr(FundraisingEventResult, self.BASE_URL + "/fundraising-events/%d" % pk)
+
+    def f_fund_events(self):
+        # https://tiltify.github.io/api/entities/fundraising-event.html
+        return self.getrl(FundraisingEventResult, self.BASE_URL + "/fundraising-events")

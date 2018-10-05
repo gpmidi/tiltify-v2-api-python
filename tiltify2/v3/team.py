@@ -12,8 +12,3 @@ class TeamResult(Tiltify3Result):
     FIELDS_SUB = {
         'avatar': AvatarResult,
     }
-
-    def parse_data(self):
-        ret = {}
-        for key in self.FIELDS_NORM:
-            ret[key] = self.data.get(key, None)

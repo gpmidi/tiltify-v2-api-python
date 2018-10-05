@@ -7,8 +7,3 @@ class LiveStreamResult(Tiltify3Result):
         'type',
     ]
     FIELDS_SUB = {}
-
-    def parse_data(self):
-        ret = {}
-        for key in self.FIELDS_NORM:
-            ret[key] = self.data.get(key, None)
