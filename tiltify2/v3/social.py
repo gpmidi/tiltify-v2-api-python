@@ -7,5 +7,6 @@ class SocialResult(Tiltify3Result):
         'youtube',
         'facebook',
         'instagram',
+        'website',
     ]
     FIELDS_SUB = {}

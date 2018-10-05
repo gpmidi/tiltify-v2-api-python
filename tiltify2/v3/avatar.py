@@ -29,3 +29,7 @@ class LogoResult(ImageResult):
 
 class BannerResult(ImageResult):
     pass
+
+
+class ThumbnailResult(ImageResult):
+    pass
