@@ -47,7 +47,7 @@ class Tiltify3Result(object):
 
 class Tiltify3(object):
     # Base API URL
-    BASE_URL = 'https://tiltify.com/api/v3/'
+    BASE_URL = 'https://tiltify.com/api/v3'
 
     def __init__(self, api_key, timeout=2, extra_headers=None):
         self.api_key = api_key
