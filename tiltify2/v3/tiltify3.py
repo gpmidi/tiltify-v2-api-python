@@ -2,9 +2,6 @@ import json
 import requests
 from json import JSONDecodeError
 
-# Various result types
-
-
 
 class Tiltify3Result(object):
     FIELDS_NORM = []
@@ -116,12 +113,12 @@ class Tiltify3(object):
 
     ## Campaign Based
     def f_campaign(self, pk):
-        from .campaigns import *
+        from .campaigns import CampaignResult
         # https://tiltify.github.io/api/entities/campaign.html
         return self.getr(CampaignResult, self.BASE_URL + "/campaigns/%d" % pk)
 
     def f_campaigns(self):
-        from .campaigns import *
+        from .campaigns import CampaignResult
         # https://tiltify.github.io/api/entities/campaign.html
         return self.getrl(CampaignResult, self.BASE_URL + "/campaigns")
 
@@ -151,28 +148,28 @@ class Tiltify3(object):
         return self.getrl(ScheduleResult, self.BASE_URL + "/campaigns/%d/schedule" % pk)
 
     def f_campaign_supporting_campaigns(self, pk):
-        from .campaigns import *
+        from .campaigns import SupportingCampaignResult
         #
         return self.getrl(SupportingCampaignResult, self.BASE_URL + "/campaigns/%d/supporting-campaigns" % pk)
 
     ## Team based
     def f_team(self, pk):
-        from .team import *
+        from .team import TeamResult
         # https://tiltify.github.io/api/entities/team.html
         return self.getr(TeamResult, self.BASE_URL + "/teams/%d" % pk)
 
     def f_teams(self):
-        from .team import *
+        from .team import TeamResult
         # https://tiltify.github.io/api/entities/team.html
         return self.getrl(TeamResult, self.BASE_URL + "/teams")
 
     def f_team_campaigns(self, pk):
-        from .campaigns import *
+        from .campaigns import TeamCampaignResult
         # https://tiltify.github.io/api/endpoints/teams-id-campaigns.html
         return self.getrl(TeamCampaignResult, self.BASE_URL + "/teams/%d/campaigns" % pk)
 
     def f_team_campaign(self, teamId, campaignId):
-        from .campaigns import *
+        from .campaigns import CampaignResult
         # https://tiltify.github.io/api/endpoints/teams-id-campaigns-id.html
         return self.getr(CampaignResult, self.BASE_URL + "/teams/%d/campaigns/%d" % (teamId, campaignId))
 
@@ -193,22 +190,22 @@ class Tiltify3(object):
         return self.getrl(UserResult, self.BASE_URL + "/users")
 
     def f_user_campaigns(self, userId):
-        from .campaigns import *
+        from .campaigns import UserCampaignResult
         # https://tiltify.github.io/api/endpoints/users-id-campaigns.html
         return self.getrl(UserCampaignResult, self.BASE_URL + "/users/%d/campaigns" % userId)
 
     def f_user_campaign(self, userId, campaignId):
-        from .campaigns import *
+        from .campaigns import CampaignResult
         # https://tiltify.github.io/api/endpoints/users-id-campaigns-id.html
         return self.getr(CampaignResult, self.BASE_URL + "/users/%d/campaigns/%d" % (userId, campaignId))
 
     def f_user_owned_teams(self, userId):
-        from .team import *
+        from .team import OwnedTeamResult
         # https://tiltify.github.io/api/endpoints/users-id-owned-teams.html
         return self.getrl(OwnedTeamResult, self.BASE_URL + "/users/%d/teams" % userId)
 
     def f_user_teams(self, userId):
-        from .team import *
+        from .team import UserTeamResult
         # https://tiltify.github.io/api/endpoints/users-id-teams.html
         return self.getrl(UserTeamResult, self.BASE_URL + "/users/%d/campaigns" % userId)
 
