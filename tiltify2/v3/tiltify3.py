@@ -213,7 +213,7 @@ class Tiltify3(object):
         # https://tiltify.github.io/api/entities/cause.html
         return self.getrl(CauseResult, self.BASE_URL + "/causes")
 
-    # TODO: Support more types for casues
+    # TODO: Support more types for causes
 
     ## Fund Based
     def f_fund_event(self, pk):
