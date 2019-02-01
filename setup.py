@@ -13,5 +13,6 @@ setup(
     keywords=['tiltify', 'api', 'v2', 'livestreaming', 'charity', 'fundraising'],
     install_requires=[
         'requests',
+        'memoize',
     ],
 )
