@@ -9,9 +9,13 @@ class TeamResult(Tiltify3Result):
         'name',
         'slug',
         'url',
+        'about',
+        'inviteOnly',
+        'totalAmountRaised',
     ]
     FIELDS_SUB = {
         'avatar': AvatarResult,
+        'social': SocialResult,
     }
 
 
