@@ -1,6 +1,6 @@
-import json
-import requests
 from json import JSONDecodeError
+
+import requests
 
 
 class Tiltify3Result(object):
@@ -31,7 +31,7 @@ class Tiltify3Result(object):
             ret[key] = self.data.get(key, None)
         for key, t in self.FIELDS_SUB.items():
             if key in self.data:
-                ret[key] = t(**self.data[key])
+                ret[key] = t(self.status, self.data[key], {}, None, None)
             else:
                 ret[key] = None
         return ret
