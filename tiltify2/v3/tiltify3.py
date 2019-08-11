@@ -94,6 +94,7 @@ class Tiltify3(object):
             error=r.get('error', {}),
             errors=r.get('errors', {}),
         )
+        return res
 
     def getrl(self, result_type, url, data=None, **kwargs):
         """ Run a GET request - yield the given result type response list """
