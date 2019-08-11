@@ -98,13 +98,14 @@ class Tiltify3(object):
 
     def getrl(self, result_type, url, data=None, **kwargs):
         """ Run a GET request - yield the given result type response list """
-        for r in self.get(url=url, data=data, **kwargs):
+        rr = self.get(url=url, data=data, **kwargs)
+        for r in rr['data']:
             yield result_type(
-                meta_status=r.get('meta', {}).get('status', None),
-                data=r.get('data', {}),
-                links=r.get('links', {}),
-                error=r.get('error', {}),
-                errors=r.get('errors', {}),
+                meta_status=rr.get('meta', {}).get('status', None),
+                data=r,
+                links=rr.get('links', {}),
+                error=rr.get('error', {}),
+                errors=rr.get('errors', {}),
             )
 
     def _default_args(self):
