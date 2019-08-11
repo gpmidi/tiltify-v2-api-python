@@ -82,7 +82,7 @@ class Tiltify3(object):
         try:
             return resp.json()
         except JSONDecodeError as e:
-            return resp.text
+            raise RuntimeError("Got non-json response: %r" % resp.text)
 
     def getr(self, result_type, url, data=None, **kwargs):
         """ Run a GET request - return the given result type response """
