@@ -115,7 +115,7 @@ class Tiltify3(object):
     def f_campaign(self, pk):
         from .campaigns import CampaignResult
         # https://tiltify.github.io/api/entities/campaign.html
-        return self.getr(CampaignResult, self.BASE_URL + "/campaigns/%d" % pk)
+        return self.getr(CampaignResult, self.BASE_URL + "/campaigns/%s" % pk)
 
     def f_campaigns(self):
         from .campaigns import CampaignResult
@@ -125,38 +125,38 @@ class Tiltify3(object):
     def f_campaign_donations(self, pk):
         from .donation import DonationResult
         #
-        return self.getrl(DonationResult, self.BASE_URL + "/campaigns/%d/donations" % pk)
+        return self.getrl(DonationResult, self.BASE_URL + "/campaigns/%s/donations" % pk)
 
     def f_campaign_rewards(self, pk):
         from .reward import RewardResult
         #
-        return self.getrl(RewardResult, self.BASE_URL + "/campaigns/%d/rewards" % pk)
+        return self.getrl(RewardResult, self.BASE_URL + "/campaigns/%s/rewards" % pk)
 
     def f_campaign_polls(self, pk):
         from .poll import PollResult
         #
-        return self.getrl(PollResult, self.BASE_URL + "/campaigns/%d/polls" % pk)
+        return self.getrl(PollResult, self.BASE_URL + "/campaigns/%s/polls" % pk)
 
     def f_campaign_challenges(self, pk):
         from .challenges import ChallengeResult
         #
-        return self.getrl(ChallengeResult, self.BASE_URL + "/campaigns/%d/challenges" % pk)
+        return self.getrl(ChallengeResult, self.BASE_URL + "/campaigns/%s/challenges" % pk)
 
     def f_campaign_schedule(self, pk):
         from .schedule import ScheduleResult
         #
-        return self.getrl(ScheduleResult, self.BASE_URL + "/campaigns/%d/schedule" % pk)
+        return self.getrl(ScheduleResult, self.BASE_URL + "/campaigns/%s/schedule" % pk)
 
     def f_campaign_supporting_campaigns(self, pk):
         from .campaigns import SupportingCampaignResult
         #
-        return self.getrl(SupportingCampaignResult, self.BASE_URL + "/campaigns/%d/supporting-campaigns" % pk)
+        return self.getrl(SupportingCampaignResult, self.BASE_URL + "/campaigns/%s/supporting-campaigns" % pk)
 
     ## Team based
     def f_team(self, pk):
         from .team import TeamResult
         # https://tiltify.github.io/api/entities/team.html
-        return self.getr(TeamResult, self.BASE_URL + "/teams/%d" % pk)
+        return self.getr(TeamResult, self.BASE_URL + "/teams/%s" % pk)
 
     def f_teams(self):
         from .team import TeamResult
@@ -166,12 +166,12 @@ class Tiltify3(object):
     def f_team_campaigns(self, pk):
         from .campaigns import TeamCampaignResult
         # https://tiltify.github.io/api/endpoints/teams-id-campaigns.html
-        return self.getrl(TeamCampaignResult, self.BASE_URL + "/teams/%d/campaigns" % pk)
+        return self.getrl(TeamCampaignResult, self.BASE_URL + "/teams/%s/campaigns" % pk)
 
     def f_team_campaign(self, teamId, campaignId):
         from .campaigns import CampaignResult
         # https://tiltify.github.io/api/endpoints/teams-id-campaigns-id.html
-        return self.getr(CampaignResult, self.BASE_URL + "/teams/%d/campaigns/%d" % (teamId, campaignId))
+        return self.getr(CampaignResult, self.BASE_URL + "/teams/%s/campaigns/%s" % (teamId, campaignId))
 
     ## User Based
     def f_self(self):
@@ -182,7 +182,7 @@ class Tiltify3(object):
     def f_user(self, pk):
         from .user import UserResult
         # https://tiltify.github.io/api/entities/user.html
-        return self.getr(UserResult, self.BASE_URL + "/users/%d" % pk)
+        return self.getr(UserResult, self.BASE_URL + "/users/%s" % pk)
 
     def f_users(self):
         from .user import UserResult
@@ -192,28 +192,28 @@ class Tiltify3(object):
     def f_user_campaigns(self, userId):
         from .campaigns import UserCampaignResult
         # https://tiltify.github.io/api/endpoints/users-id-campaigns.html
-        return self.getrl(UserCampaignResult, self.BASE_URL + "/users/%d/campaigns" % userId)
+        return self.getrl(UserCampaignResult, self.BASE_URL + "/users/%s/campaigns" % userId)
 
     def f_user_campaign(self, userId, campaignId):
         from .campaigns import CampaignResult
         # https://tiltify.github.io/api/endpoints/users-id-campaigns-id.html
-        return self.getr(CampaignResult, self.BASE_URL + "/users/%d/campaigns/%d" % (userId, campaignId))
+        return self.getr(CampaignResult, self.BASE_URL + "/users/%s/campaigns/%s" % (userId, campaignId))
 
     def f_user_owned_teams(self, userId):
         from .team import OwnedTeamResult
         # https://tiltify.github.io/api/endpoints/users-id-owned-teams.html
-        return self.getrl(OwnedTeamResult, self.BASE_URL + "/users/%d/teams" % userId)
+        return self.getrl(OwnedTeamResult, self.BASE_URL + "/users/%s/teams" % userId)
 
     def f_user_teams(self, userId):
         from .team import UserTeamResult
         # https://tiltify.github.io/api/endpoints/users-id-teams.html
-        return self.getrl(UserTeamResult, self.BASE_URL + "/users/%d/campaigns" % userId)
+        return self.getrl(UserTeamResult, self.BASE_URL + "/users/%s/campaigns" % userId)
 
     ## Cause Based
     def f_cause(self, pk):
         from .cause import CauseResult
         # https://tiltify.github.io/api/entities/cause.html
-        return self.getr(CauseResult, self.BASE_URL + "/causes/%d" % pk)
+        return self.getr(CauseResult, self.BASE_URL + "/causes/%s" % pk)
 
     def f_causes(self):
         from .cause import CauseResult
@@ -226,7 +226,7 @@ class Tiltify3(object):
     def f_fund_event(self, pk):
         from .fundraising_event import FundraisingEventResult
         # https://tiltify.github.io/api/entities/fundraising-event.html
-        return self.getr(FundraisingEventResult, self.BASE_URL + "/fundraising-events/%d" % pk)
+        return self.getr(FundraisingEventResult, self.BASE_URL + "/fundraising-events/%s" % pk)
 
     def f_fund_events(self):
         from .fundraising_event import FundraisingEventResult
