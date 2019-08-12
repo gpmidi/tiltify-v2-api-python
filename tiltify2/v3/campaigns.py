@@ -67,7 +67,7 @@ class TeamCampaignResult(Tiltify3Result):
         # 'teamId',
         # 'fundraisingEventId',
         'goal',
-        'originalGoal',
+        # 'originalGoal',
         'amountRaised',
         'totalAmountRaised',
         'startsAt',
