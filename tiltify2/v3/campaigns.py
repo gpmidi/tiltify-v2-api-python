@@ -66,13 +66,12 @@ class TeamCampaignResult(Tiltify3Result):
         # 'userId',
         # 'teamId',
         # 'fundraisingEventId',
-        'currency',
         'goal',
         'originalGoal',
         'amountRaised',
         'totalAmountRaised',
-        'startsOn',
-        'endsOn',
+        'startsAt',
+        'endsAt',
     ]
     FIELDS_SUB = {
         'thumbnail': ThumbnailResult,
